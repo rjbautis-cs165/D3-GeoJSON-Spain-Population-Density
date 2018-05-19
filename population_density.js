@@ -39,6 +39,7 @@ var zooming = function(d) {
         .attr("d", path);
 
 }
+
 //Then define the zoom behavior
 var zoom = d3.zoom()
              .on("zoom", zooming);
@@ -50,7 +51,7 @@ var svg = d3.select("body")
             .attr("width", w)
             .attr("height", h);
 
-//The center of the country, roughly
+//The center of the projection of Spain, roughly
 var center = projection([-97.0, 39.0]);
 
 //Create a container in which all zoom-able elements will live
@@ -107,7 +108,7 @@ d3.csv("population_density.csv", function(data) {
         }
 
         // Bind data and create one path per GeoJSON feature
-        var map = svg.selectAll("path")
+        svg.selectAll("path")
             .data(json.features)
             .enter()
             .append("path")
@@ -116,7 +117,6 @@ d3.csv("population_density.csv", function(data) {
             .attr("fill", function(d) { return color(d.properties.density); })
 			.attr("stroke", "black");
         
-
     })
 
 });
