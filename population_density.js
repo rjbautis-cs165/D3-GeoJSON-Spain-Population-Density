@@ -82,7 +82,7 @@ d3.csv("population_density.csv", function(data) {
     
     
     // Load in GeoJSON data
-    d3.json("spain_provinces_simplified.json", function(json) {
+    d3.json("spain.json", function(json) {
         
         // Merge the csv data and GeoJSON
         // Loop through once for each province
