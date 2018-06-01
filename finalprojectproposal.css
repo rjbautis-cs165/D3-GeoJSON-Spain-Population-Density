@@ -20,3 +20,8 @@ h5 {
     text-align: center;
     padding: 5px;
 }
+
+.rotate {
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
