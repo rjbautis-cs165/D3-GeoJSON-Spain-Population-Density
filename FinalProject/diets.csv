@@ -1,5 +1,5 @@
-diet,fat,carbs,sugar,protein
-usda,27.5,55,0,22.5
-paleo,39,23,0,38
-zone,33,42,27,29
-vegan,33,57,0,13
+category,usda,paleo,zone,vegan
+fat,27.5,39,33,33
+carbs,55,23,42,57
+sugar,0,0,27,0
+protein,22.5,38,29,13
