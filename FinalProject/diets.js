@@ -39,12 +39,12 @@ d3.csv("diets.csv", function(d) {
     
     // From hw4 assignment. Repurpose for final project
     yScale.domain([
-        d3.min(countries, function(c) {
+        d3.min(categories, function(c) {
             return d3.min(c.values, function(d) { 
                 return d.BTU; 
             }); 
         }),
-        d3.max(countries, function(c) { 
+        d3.max(categories, function(c) { 
             return d3.max(c.values, function(d) { 
                 return d.BTU; }); })
     ]);
