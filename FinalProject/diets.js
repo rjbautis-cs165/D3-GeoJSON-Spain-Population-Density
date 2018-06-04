@@ -13,6 +13,12 @@ var g = svg.append("g")
 
 var colors = d3.scaleOrdinal(d3.schemeCategory10);
 
+//Define Tooltip here
+var tooltip = d3.select("body")
+    .append("div")
+    .attr("id", "tooltip")
+    .attr("class", "hidden");
+
 
 d3.csv("diets.csv", function(d) {
         d.fat = +d.fat;
@@ -76,7 +82,30 @@ d3.csv("diets.csv", function(d) {
         .attr("y", function(d) { return yScale(d.usda); })
         .attr("width", xScale.bandwidth())
         .attr("height", function(d) { return height - yScale(d.usda); })
-        .style("fill", function(d) { return colors(d.category); });
+        .style("fill", function(d) { return colors(d.category); })
+        .on("mouseover", function(d) {
+
+            // Update the tooltip position and value
+            // Reference for adding text w/ line breaks to tooltip: https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73
+            // Reference for styling the tooltip based on the d3.event.clientX and d3.event.clientY: https://bl.ocks.org/saifulazfar/f2da589a3abbe639fee0996198ace301
+            d3.select("#tooltip")
+                // Returns the x-coordinate relative to the window
+                .style("left", (d3.event.clientX + 20) + "px")
+                // Returns the y-coordinate relative to the window
+                .style("top", (d3.event.clientY - 20) + "px")	
+                tooltip.html(d.country + "<br/>" + 
+                             "Population: " + d.population + " million <br/>" + 
+                             "GDP: $" + d.gdp + " trillion<br/>" + 
+                             "EPC: " + d.ecc + " million BTUs<br/>" + 
+                             "Total: " + d.ec + " trillion BTUs");
+        
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+        })
+        .on("mouseout", function() {
+            //Hide the tooltip
+            d3.select("#tooltip").classed("hidden", true);
+        });
 
     // x-axis label
     // Reference: https://bl.ocks.org/EfratVil/d956f19f2e56a05c31fb6583beccfda7
@@ -182,7 +211,30 @@ d3.csv("diets.csv", function(d) {
         .attr("y", function(d) { return yScale(d.paleo); })
         .attr("width", xScale.bandwidth())
         .attr("height", function(d) { return height - yScale(d.paleo); })
-        .style("fill", function(d) { return colors(d.category); });
+        .style("fill", function(d) { return colors(d.category); })
+        .on("mouseover", function(d) {
+
+            // Update the tooltip position and value
+            // Reference for adding text w/ line breaks to tooltip: https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73
+            // Reference for styling the tooltip based on the d3.event.clientX and d3.event.clientY: https://bl.ocks.org/saifulazfar/f2da589a3abbe639fee0996198ace301
+            d3.select("#tooltip")
+                // Returns the x-coordinate relative to the window
+                .style("left", (d3.event.clientX + 20) + "px")
+                // Returns the y-coordinate relative to the window
+                .style("top", (d3.event.clientY - 20) + "px")	
+                tooltip.html(d.country + "<br/>" + 
+                             "Population: " + d.population + " million <br/>" + 
+                             "GDP: $" + d.gdp + " trillion<br/>" + 
+                             "EPC: " + d.ecc + " million BTUs<br/>" + 
+                             "Total: " + d.ec + " trillion BTUs");
+        
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+        })
+        .on("mouseout", function() {
+            //Hide the tooltip
+            d3.select("#tooltip").classed("hidden", true);
+        });
 
     // x-axis label
     // Reference: https://bl.ocks.org/EfratVil/d956f19f2e56a05c31fb6583beccfda7
@@ -290,7 +342,31 @@ d3.csv("diets.csv", function(d) {
         .attr("y", function(d) { return yScale(d.zone); })
         .attr("width", xScale.bandwidth())
         .attr("height", function(d) { return height - yScale(d.zone); })
-        .style("fill", function(d) { return colors(d.category); });
+        .style("fill", function(d) { return colors(d.category); })
+        .on("mouseover", function(d) {
+
+            // Update the tooltip position and value
+            // Reference for adding text w/ line breaks to tooltip: https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73
+            // Reference for styling the tooltip based on the d3.event.clientX and d3.event.clientY: https://bl.ocks.org/saifulazfar/f2da589a3abbe639fee0996198ace301
+            d3.select("#tooltip")
+                // Returns the x-coordinate relative to the window
+                .style("left", (d3.event.clientX + 20) + "px")
+                // Returns the y-coordinate relative to the window
+                .style("top", (d3.event.clientY - 20) + "px")	
+                tooltip.html(d.country + "<br/>" + 
+                             "Population: " + d.population + " million <br/>" + 
+                             "GDP: $" + d.gdp + " trillion<br/>" + 
+                             "EPC: " + d.ecc + " million BTUs<br/>" + 
+                             "Total: " + d.ec + " trillion BTUs");
+        
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+        })
+        .on("mouseout", function() {
+            //Hide the tooltip
+            d3.select("#tooltip").classed("hidden", true);
+        });
+
    
     // x-axis label
     // Reference: https://bl.ocks.org/EfratVil/d956f19f2e56a05c31fb6583beccfda7
@@ -397,7 +473,30 @@ d3.csv("diets.csv", function(d) {
         .attr("y", function(d) { return yScale(d.vegan); })
         .attr("width", xScale.bandwidth())
         .attr("height", function(d) { return height - yScale(d.vegan); })
-        .style("fill", function(d) { return colors(d.category); });
+        .style("fill", function(d) { return colors(d.category); })
+        .on("mouseover", function(d) {
+
+            // Update the tooltip position and value
+            // Reference for adding text w/ line breaks to tooltip: https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73
+            // Reference for styling the tooltip based on the d3.event.clientX and d3.event.clientY: https://bl.ocks.org/saifulazfar/f2da589a3abbe639fee0996198ace301
+            d3.select("#tooltip")
+                // Returns the x-coordinate relative to the window
+                .style("left", (d3.event.clientX + 20) + "px")
+                // Returns the y-coordinate relative to the window
+                .style("top", (d3.event.clientY - 20) + "px")	
+                tooltip.html(d.country + "<br/>" + 
+                             "Population: " + d.population + " million <br/>" + 
+                             "GDP: $" + d.gdp + " trillion<br/>" + 
+                             "EPC: " + d.ecc + " million BTUs<br/>" + 
+                             "Total: " + d.ec + " trillion BTUs");
+        
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+        })
+        .on("mouseout", function() {
+            //Hide the tooltip
+            d3.select("#tooltip").classed("hidden", true);
+        });
 
     // x-axis label
     // Reference: https://bl.ocks.org/EfratVil/d956f19f2e56a05c31fb6583beccfda7
@@ -432,3 +531,4 @@ d3.csv("diets.csv", function(d) {
         .style("font-size", "50px") 
         .text("Vegan");
 });
+
