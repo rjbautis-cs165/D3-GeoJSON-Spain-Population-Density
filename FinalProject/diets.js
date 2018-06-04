@@ -84,8 +84,8 @@ d3.csv("diets.csv", function(d) {
 
 var g2 = d3.select("body")
     .append("svg")
-    .attr("width", 960)
-    .attr("height", 500)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
