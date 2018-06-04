@@ -57,27 +57,105 @@ d3.csv("diets.csv", function(d) {
     console.log(categories);
 
     
-//    g.append("g")
-//        .attr("class", "axis axis--x")
-//        .attr("transform", "translate(0," + height + ")")
-//        .call(d3.axisBottom(x));
-//
-//    g.append("g")
-//        .attr("class", "axis axis--y")
-//        .call(d3.axisLeft(y).ticks(10, "%"))
-//        .append("text")
-//        .attr("transform", "rotate(-90)")
-//        .attr("y", 6)
-//        .attr("dy", "0.71em")
-//        .attr("text-anchor", "end")
-//        .text("Frequency");
-//
-//    g.selectAll(".bar")
-//        .data(data)
-//        .enter().append("rect")
-//        .attr("class", "bar")
-//        .attr("x", function(d) { return x(d.letter); })
-//        .attr("y", function(d) { return y(d.frequency); })
-//        .attr("width", x.bandwidth())
-//        .attr("height", function(d) { return height - y(d.frequency); });
+    g.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xScale));
+
+    g.append("g")
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(yScale).ticks(10, "%"))
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", "0.71em")
+        .attr("text-anchor", "end")
+        .text("Frequency");
+
+    g.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return xScale(d.category); })
+        .attr("y", function(d) { return yScale(d.usda); })
+        .attr("width", xScale.bandwidth())
+        .attr("height", function(d) { return height - yScale(d.usda); });
+});
+
+var g2 = d3.select("body")
+    .append("svg")
+    .attr("width", 960)
+    .attr("height", 500)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("diets.csv", function(d) {
+        d.fat = +d.fat;
+        d.carbs = +d.carbs;
+        d.sugar = +d.sugar;
+        d.protein = +d.protein
+        return d;
+    }, function(error, data) {
+    if (error) throw error;
+    
+
+    // Grab categories from csv file, starting with the column at the first index
+    var categories = data.columns.slice(1).map(function(diet) {
+        return {
+            // Key = "diet", value = name of the diet
+            diet: diet,
+            // Key = "values", value = {category (i.e. the nutrient), nutrient value for current diet theory}
+            values: data.map(function(d) {
+                return {category: d.category, BTU: d[diet]};
+            })
+        };
+    });
+    
+    xScale.domain(data.map(function(d) { return d.category; }));
+  
+    console.log(xScale.domain());
+    
+    // From hw4 assignment. Repurpose for final project
+    yScale.domain([
+        d3.min(categories, function(c) {
+            return d3.min(c.values, function(d) { 
+                return d.BTU; 
+            }); 
+        }),
+        d3.max(categories, function(c) { 
+            return d3.max(c.values, function(d) { 
+                return d.BTU; }); })
+    ]);
+
+    
+    
+    console.log(yScale.domain());
+    
+    
+    console.log(categories);
+
+    
+    g2.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xScale));
+
+    g2.append("g")
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(yScale).ticks(10, "%"))
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", "0.71em")
+        .attr("text-anchor", "end")
+        .text("Frequency");
+
+    g2.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return xScale(d.category); })
+        .attr("y", function(d) { return yScale(d.paleo); })
+        .attr("width", xScale.bandwidth())
+        .attr("height", function(d) { return height - yScale(d.paleo); });
 });
