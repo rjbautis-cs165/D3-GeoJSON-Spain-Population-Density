@@ -1,5 +1,5 @@
 // SET UP DIMENSIONS
-var w = 900,
+var w = 1200,
   h = 300;
 
 // margin.middle is distance from center line to each y-axis
@@ -56,7 +56,7 @@ d3.csv('./food.csv', function(data) {
   
   xScale = d3.scale.linear()
     .domain([0, maxValue])
-    .range([0, regionWidth])
+    .range([0, regionWidth -9])
     .nice();
     
 
@@ -71,7 +71,8 @@ d3.csv('./food.csv', function(data) {
     .scale(yScale)
     .orient('right')
     .tickSize(4, 0)
-    .tickPadding(margin.middle - 4);
+    .tickPadding(margin.middle)
+    ;
 
   var yAxisRight = d3.svg.axis()
     .scale(yScale)
@@ -86,7 +87,7 @@ d3.csv('./food.csv', function(data) {
     .tickFormat(d3.format(''));
 
   var xAxisLeft = d3.svg.axis()
-    .scale(xScale.copy().range([pointA, 0]))
+    .scale(xScale.copy().range([pointA, 8]))
     .tickValues([1,2,3,4,5,6,7,8])
     .tickSize(4, 1)
     .tickFormat(d3.format(''));
@@ -98,17 +99,21 @@ d3.csv('./food.csv', function(data) {
     .attr('transform', translation(pointA, 0) + 'scale(-1,1)');
   var rightBarGroup = svg.append('g').attr('class', 'rightBarGroup')
     .attr('transform', translation(pointB, 0));
+    
+//USDA
+    var leftUSDAGroup = svg.append('g').attr('class', 'leftUSDAGroup')
+    .attr('transform', translation(pointA, 0) + 'scale(-1,1)');
+      var rightUSDAGroup = svg.append('g').attr('class', 'rightUSDAGroup')
+    .attr('transform', translation(pointB, 0));
 
   
   // ADD MARKS
   svg.append('text')
     .text('Diet 1 (Vegan)')
-    .attr('class', 'gender')
     .style('text-anchor', 'middle')
     .attr('transform', translation(w/10, h/10));
   svg.append('text')
     .text('Diet 2 (Paleo)')
-    .attr('class', 'gender')
     .style('text-anchor', 'middle')
     .attr('transform', translation(w-w/10, h/10));
 
@@ -137,8 +142,10 @@ d3.csv('./food.csv', function(data) {
     .call(xAxisRight);
 
 // DRAW THE BARS
+    var leftUSDABar = d3.select('.leftUSDAGroup').selectAll('rectUSDA').data(data.filter(function(d) {return d.diet =="USDA";}));
+    var rightUSDABar = d3.select('.rightUSDAGroup').selectAll('rectUSDA').data(data.filter(function(d) {return d.diet =="USDA";}));
     
-    var leftBars = d3.select('.leftBarGroup').selectAll('rect').data(data.filter(function(d) {return d.diet =="Zone";}));
+    var leftBars = d3.select('.leftBarGroup').selectAll('rect').data(data.filter(function(d) {return d.diet =="Vegan";}));
     var rightBars = d3.select('.rightBarGroup').selectAll('rect').data(data.filter(function(d) {return d.diet =="Paleo";}));
     
     rightBars.enter().append('rect')
@@ -147,8 +154,6 @@ d3.csv('./food.csv', function(data) {
         .attr('height', yScale.rangeBand())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
-  
-
 
      leftBars.enter().append('rect')
         .attr('class', 'enter')
@@ -156,6 +161,26 @@ d3.csv('./food.csv', function(data) {
         .attr('height', yScale.rangeBand())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
+    
+    // USDA BARS
+    leftUSDABar.enter().append('rect')
+        .attr('class', 'enter')
+        .attr('class', 'rectUSDA')
+        .attr("style", "outline: 3px solid #51387d;") 
+        .attr('x',0)
+        .attr('height', yScale.rangeBand())
+        .attr('y', function(d) { return yScale(d.category); })
+        .attr("width", function(d) { return xScale(d.serving); });
+    
+     rightUSDABar.enter().append('rect')
+        .attr('class', 'enter')
+        .attr('class', 'rectUSDA')
+        .attr("style", "outline: 3px solid #51387d;") 
+        .attr('x',0)
+        .attr('height', yScale.rangeBand())
+        .attr('y', function(d) { return yScale(d.category); })
+        .attr("width", function(d) { return xScale(d.serving); });
+
    });
 
 
