@@ -1,0 +1,25 @@
+rect {
+  fill-opacity: 0.6;
+  fill: steelblue;
+}
+
+
+.rectUSDA{
+    fill:none;
+    border: 5px solid red;
+}
+
+.chart .input_wrap {
+  font: 10px sans-serif;
+  text-align: right;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+  width: auto;
+  height: auto;
+}
