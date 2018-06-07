@@ -14,7 +14,7 @@ var margin = {
 
 // the width of each side of the chart
 // <-regionWidth-><-middle-><-middle-><-regionWidth->
-var regionWidth = w / 2 - margin.middle;
+var regionWidth = w  / 2 - margin.middle - 20;
 
 // these are the x-coordinates of the y-axes
 var pointA = regionWidth; //left
@@ -66,12 +66,15 @@ d3.csv('./food.csv', function(data) {
     }))
     .rangeRoundBands([h - margin.bottom, 0], 0.1);
 
+    
+    var color = d3.scale.ordinal()
+        .range(["#b2907c", "#6ae1b0", "#ff5b67", "#8acbe3", "#ffe156", "#ff8c00"]);
 
   var yAxisLeft = d3.svg.axis()
     .scale(yScale)
     .orient('right')
     .tickSize(4, 0)
-    .tickPadding(margin.middle)
+    .tickPadding(margin.middle + 12)
     ;
 
   var yAxisRight = d3.svg.axis()
@@ -151,6 +154,7 @@ d3.csv('./food.csv', function(data) {
     rightBars.enter().append('rect')
         .attr('class', 'enter')
         .attr('x',0)
+        .style('fill', function(d) { return color(d.category); })
         .attr('height', yScale.rangeBand())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
@@ -158,6 +162,7 @@ d3.csv('./food.csv', function(data) {
      leftBars.enter().append('rect')
         .attr('class', 'enter')
         .attr('x',0)
+        .style('fill', function(d) { return color(d.category); })
         .attr('height', yScale.rangeBand())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
@@ -166,7 +171,7 @@ d3.csv('./food.csv', function(data) {
     leftUSDABar.enter().append('rect')
         .attr('class', 'enter')
         .attr('class', 'rectUSDA')
-        .attr("style", "outline: 3px solid #51387d;") 
+        .attr("style", "outline: 3px solid #7d4fc3;") 
         .attr('x',0)
         .attr('height', yScale.rangeBand())
         .attr('y', function(d) { return yScale(d.category); })
@@ -175,7 +180,7 @@ d3.csv('./food.csv', function(data) {
      rightUSDABar.enter().append('rect')
         .attr('class', 'enter')
         .attr('class', 'rectUSDA')
-        .attr("style", "outline: 3px solid #51387d;") 
+        .attr("style", "outline: 3px solid #7d4fc3;") 
         .attr('x',0)
         .attr('height', yScale.rangeBand())
         .attr('y', function(d) { return yScale(d.category); })
