@@ -197,7 +197,7 @@ d3.csv('./food.csv', function(data) {
     legend.append('text')
         .attr('x', 25)
         .attr('y', 16)
-        .text('USDA Diet Recommendation');
+        .text('USDA Serving Size');
    });
 
 
