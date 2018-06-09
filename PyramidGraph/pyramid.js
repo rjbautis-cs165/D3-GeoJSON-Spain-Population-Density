@@ -2,13 +2,13 @@ var d3;
 
 // SET UP DIMENSIONS
 var w = 1200,
-  h = 300;
+  h = 400;
 
 // margin.middle is distance from center line to each y-axis
 var margin = {
-  top: 20,
+   top: 20,
   right: 124,
-  bottom: 30,
+  bottom: 50,
   left: 195,
   middle: 28
 };
@@ -72,7 +72,7 @@ d3.csv('./food.csv', function(data) {
     
   // d3.scale.ordinal()
   var color = d3.scaleOrdinal()
-    .range(["#b2907c", "#6ae1b0", "#ff5b67", "#8acbe3", "#ffe156", "#ff8c00"]);
+    .range(["#b2907c", "#a1bb00", "#ed3030", "#8acbe3", "#ffba00", "#ff8c00"]);
 
     
   // d3.svg.axis()
@@ -85,12 +85,12 @@ d3.csv('./food.csv', function(data) {
     .tickFormat('');
 
   var xAxisRight = d3.axisBottom(xScale)
-    .tickValues([1,2,3,4,5,6,7,8])
+    .tickValues([1,2,3,4,5,6,7,8,9])
     .tickSize(4, 1)
     .tickFormat(d3.format(''));
 
   var xAxisLeft = d3.axisBottom(xScale.copy().range([pointA, 8]))
-    .tickValues([1,2,3,4,5,6,7,8])
+    .tickValues([1,2,3,4,5,6,7,8,9])
     .tickSize(4, 1)
     .tickFormat(d3.format(''));
 
@@ -111,13 +111,13 @@ d3.csv('./food.csv', function(data) {
   
   // ADD MARKS
   svg.append('text')
-    .text('Diet 1 (Vegan)')
+    .text('Paleo Serving Size')
     .style('text-anchor', 'middle')
-    .attr('transform', translation(w/10, h/10));
+    .attr('transform', translation(w-w/5, h-margin.bottom + 40));
   svg.append('text')
-    .text('Diet 2 (Paleo)')
+    .text('Vegan Serving Size')
     .style('text-anchor', 'middle')
-    .attr('transform', translation(w-w/10, h/10));
+    .attr('transform', translation(w-w + 240, h-margin.bottom + 40));
 
 
   // DRAW AXES
@@ -170,7 +170,8 @@ d3.csv('./food.csv', function(data) {
     leftUSDABar.enter().append('rect')
         .attr('class', 'enter')
         .attr('class', 'rectUSDA')
-        .attr("style", "outline: 3px solid #7d4fc3;") 
+        .attr("stroke", "#423e7e") 
+        .attr("stroke-width", 3)
         .attr('x',0)
         .attr('height', yScale.bandwidth())
         .attr('y', function(d) { return yScale(d.category); })
@@ -179,12 +180,24 @@ d3.csv('./food.csv', function(data) {
      rightUSDABar.enter().append('rect')
         .attr('class', 'enter')
         .attr('class', 'rectUSDA')
-        .attr("style", "outline: 3px solid #7d4fc3;") 
+        .attr("stroke", "#423e7e") 
+        .attr("stroke-width", 3)
         .attr('x',0)
         .attr('height', yScale.bandwidth())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
 
+    
+    // the legend
+    var legend = d3.select('svg')
+   legend.append('rect')
+        .attr('width', 20)
+        .attr('height', 20)
+        .style('fill', '#423e7e');
+    legend.append('text')
+        .attr('x', 25)
+        .attr('y', 16)
+        .text('USDA Diet Recommendation');
    });
 
 
