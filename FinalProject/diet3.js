@@ -1,11 +1,12 @@
-var svg = d3.select("svg"),
-    margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+//var svg = d3.select("svg"),
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 750,
+    height = 500;
+//    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var x = d3.scaleBand()
-    .rangeRound([0, width-75])
+    .rangeRound([0, width-100])
     .paddingInner(0.50)
     .align(0.1);
 
@@ -22,6 +23,14 @@ d3.csv("test.csv", function(d, i, columns) {
 },  function(error, data) {
         if (error) throw error;
 
+        var bars = d3.select(".bars")
+            .append("svg")
+            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width + + margin.left + margin.right)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+  
         var keys = data.columns.slice(1);
 
         data.sort(function(a, b) { return b.total - a.total; });
@@ -29,7 +38,7 @@ d3.csv("test.csv", function(d, i, columns) {
         y.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
         z.domain(keys);
     
-        g.append("g")
+        bars.append("g")
             .selectAll("g")
             .data(d3.stack().keys(keys)(data))
             .enter().append("g")
@@ -42,12 +51,13 @@ d3.csv("test.csv", function(d, i, columns) {
             .attr("height", function(d) { return y(d[0]) - y(d[1]); })
             .attr("width", x.bandwidth());
 
-        g.append("g")
+        bars.append("g")
             .attr("class", "axis")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
-        g.append("g")
+        // y-axis label
+        bars.append("g")
             .attr("class", "axis")
             .call(d3.axisLeft(y).ticks(null, "s"))
         .append("text")
@@ -60,7 +70,8 @@ d3.csv("test.csv", function(d, i, columns) {
             .attr("transform", "rotate(-90)")
             .text("Percentage");
 
-        var legend = g.append("g")
+        // Legend
+        var legend = bars.append("g")
                 .attr("font-family", "sans-serif")
                 .attr("font-size", 10)
                 .attr("text-anchor", "end")
@@ -76,7 +87,7 @@ d3.csv("test.csv", function(d, i, columns) {
                 .attr("fill", z);
 
         legend.append("text")
-                .attr("x", width - 24)
+                .attr("x", width - 25)
                 .attr("y", 9.5)
                 .attr("dy", "0.32em")
                 .text(function(d) { return d; });

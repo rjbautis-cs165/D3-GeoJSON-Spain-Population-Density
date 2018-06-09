@@ -1,0 +1,25 @@
+diet,category,serving
+USDA,Meat,1
+USDA,Vegetables,2
+USDA,Fruits,3
+USDA,Dairy ,4
+USDA,Grains,5
+USDA,Oil,1
+Zone,Meat,1
+Zone,Vegetables,1
+Zone,Fruits,2
+Zone,Dairy ,2
+Zone,Grains,2
+Zone,Oil,4
+Vegan,Meat,3
+Vegan,Vegetables,3
+Vegan,Fruits,5
+Vegan,Dairy ,6
+Vegan,Grains,3
+Vegan,Oil,2
+Paleo,Meat,4
+Paleo,Vegetables,2
+Paleo,Fruits,1
+Paleo,Dairy ,2
+Paleo,Grains,3
+Paleo,Oil,1
