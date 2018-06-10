@@ -17,6 +17,11 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
     .range(["#993333", "#a1bb00", "#e60000"]);
 
+//Define Tooltip here
+var tooltip = d3.select("body")
+    .append("div")
+    .attr("id", "tooltip")
+    .attr("class", "hidden");
 
 d3.csv("data/test.csv", function(d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
@@ -47,18 +52,19 @@ d3.csv("data/test.csv", function(d, i, columns) {
             .attr("fill", function(d) { return z(d.key); })
             .selectAll("rect")
             .data(function(d) { return d; })
-            .enter()
+            .enter();
         
         stack.append("rect")
             .attr("fill-opacity", "0.6")
             .attr("x", function(d) { return x(d.data.Diet); })
             .attr("y", function(d) { return y(d[1]); })
             .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-            .attr("width", x.bandwidth());
+            .attr("width", x.bandwidth())
+            .on("mouseover", function(d) { console.log("hi"); });
         
         // Reference: https://stackoverflow.com/questions/20626150/display-text-on-rect-using-d3-js
         stack.append("text")
-            .text(function(d) { console.log(d); return (d[1] - d[0]) + "%"})
+            .text(function(d) { return (d[1] - d[0]) + "%"})
             .attr("x", function(d) { return x(d.data.Diet) + 15; })
             .attr("y", function(d) { return (y(d[1]) + y(d[0])) / 2 + 6; })
             .style("fill", "black");
