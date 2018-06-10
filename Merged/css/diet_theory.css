@@ -2,11 +2,14 @@ body {
     padding: 20px;
 }
 
-#pyramid_chart {
-/*    float: left;*/
-    background-color: white;
-    text-align: center;
+
+/*
+rect {
+  fill-opacity: 0.6;
+  fill: steelblue;
 }
+*/
+
 
 
 .rectUSDA{
@@ -14,12 +17,12 @@ body {
     border: 5px solid red;
 }
 
-.chart .input_wrap {
+.pyramid .input_wrap {
   font: 10px sans-serif;
   text-align: right;
 }
 
-.chart div {
+.pyramid div {
   font: 10px sans-serif;
   text-align: right;
   padding: 3px;

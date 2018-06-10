@@ -1,9 +1,9 @@
 diet,category,serving
-USDA,Meat,1
-USDA,Vegetables,2
-USDA,Fruits,3
-USDA,Dairy ,4
-USDA,Grains,5
+USDA,Grains,9
+USDA,Vegetables,5
+USDA,Fruits,4
+USDA,Meat,3
+USDA,Dairy ,2
 USDA,Oil,1
 Zone,Meat,1
 Zone,Vegetables,1
