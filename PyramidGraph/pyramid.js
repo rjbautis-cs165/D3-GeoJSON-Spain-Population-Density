@@ -1,12 +1,14 @@
+var d3;
+
 // SET UP DIMENSIONS
 var w = 1200,
-  h = 300;
+  h = 400;
 
 // margin.middle is distance from center line to each y-axis
 var margin = {
-  top: 20,
+   top: 20,
   right: 124,
-  bottom: 30,
+  bottom: 50,
   left: 195,
   middle: 28
 };
@@ -54,44 +56,41 @@ d3.csv('./food.csv', function(data) {
     })
   );
   
-  xScale = d3.scale.linear()
+  // d3.scale.linear()
+  xScale = d3.scaleLinear()
     .domain([0, maxValue])
     .range([0, regionWidth -9])
     .nice();
     
-
-  yScale = d3.scale.ordinal()
+  // d3.scale.ordinal()
+  yScale = d3.scaleBand()
     .domain(data.map(function(d) {
       return d.category;
     }))
-    .rangeRoundBands([h - margin.bottom, 0], 0.1);
+    .rangeRound([h - margin.bottom, 0], 0.1);
 
     
-    var color = d3.scale.ordinal()
-        .range(["#b2907c", "#6ae1b0", "#ff5b67", "#8acbe3", "#ffe156", "#ff8c00"]);
+  // d3.scale.ordinal()
+  var color = d3.scaleOrdinal()
+    .range(["#b2907c", "#a1bb00", "#ed3030", "#8acbe3", "#ffba00", "#ff8c00"]);
 
-  var yAxisLeft = d3.svg.axis()
-    .scale(yScale)
-    .orient('right')
+    
+  // d3.svg.axis()
+  var yAxisLeft = d3.axisRight(yScale)
     .tickSize(4, 0)
-    .tickPadding(margin.middle + 12)
-    ;
+    .tickPadding(margin.middle + 12);
 
-  var yAxisRight = d3.svg.axis()
-    .scale(yScale)
-    .orient('left')
+  var yAxisRight = d3.axisLeft(yScale)
     .tickSize(4, 0)
     .tickFormat('');
 
-  var xAxisRight = d3.svg.axis()
-    .scale(xScale)
-    .tickValues([1,2,3,4,5,6,7,8])
+  var xAxisRight = d3.axisBottom(xScale)
+    .tickValues([1,2,3,4,5,6,7,8,9])
     .tickSize(4, 1)
     .tickFormat(d3.format(''));
 
-  var xAxisLeft = d3.svg.axis()
-    .scale(xScale.copy().range([pointA, 8]))
-    .tickValues([1,2,3,4,5,6,7,8])
+  var xAxisLeft = d3.axisBottom(xScale.copy().range([pointA, 8]))
+    .tickValues([1,2,3,4,5,6,7,8,9])
     .tickSize(4, 1)
     .tickFormat(d3.format(''));
 
@@ -112,13 +111,13 @@ d3.csv('./food.csv', function(data) {
   
   // ADD MARKS
   svg.append('text')
-    .text('Diet 1 (Vegan)')
+    .text('Paleo Serving Size')
     .style('text-anchor', 'middle')
-    .attr('transform', translation(w/10, h/10));
+    .attr('transform', translation(w-w/5, h-margin.bottom + 40));
   svg.append('text')
-    .text('Diet 2 (Paleo)')
+    .text('Vegan Serving Size')
     .style('text-anchor', 'middle')
-    .attr('transform', translation(w-w/10, h/10));
+    .attr('transform', translation(w-w + 240, h-margin.bottom + 40));
 
 
   // DRAW AXES
@@ -155,7 +154,7 @@ d3.csv('./food.csv', function(data) {
         .attr('class', 'enter')
         .attr('x',0)
         .style('fill', function(d) { return color(d.category); })
-        .attr('height', yScale.rangeBand())
+        .attr('height', yScale.bandwidth())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
 
@@ -163,7 +162,7 @@ d3.csv('./food.csv', function(data) {
         .attr('class', 'enter')
         .attr('x',0)
         .style('fill', function(d) { return color(d.category); })
-        .attr('height', yScale.rangeBand())
+        .attr('height', yScale.bandwidth())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
     
@@ -171,21 +170,34 @@ d3.csv('./food.csv', function(data) {
     leftUSDABar.enter().append('rect')
         .attr('class', 'enter')
         .attr('class', 'rectUSDA')
-        .attr("style", "outline: 3px solid #7d4fc3;") 
+        .attr("stroke", "#423e7e") 
+        .attr("stroke-width", 3)
         .attr('x',0)
-        .attr('height', yScale.rangeBand())
+        .attr('height', yScale.bandwidth())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
     
      rightUSDABar.enter().append('rect')
         .attr('class', 'enter')
         .attr('class', 'rectUSDA')
-        .attr("style", "outline: 3px solid #7d4fc3;") 
+        .attr("stroke", "#423e7e") 
+        .attr("stroke-width", 3)
         .attr('x',0)
-        .attr('height', yScale.rangeBand())
+        .attr('height', yScale.bandwidth())
         .attr('y', function(d) { return yScale(d.category); })
         .attr("width", function(d) { return xScale(d.serving); });
 
+    
+    // the legend
+    var legend = d3.select('svg')
+   legend.append('rect')
+        .attr('width', 20)
+        .attr('height', 20)
+        .style('fill', '#423e7e');
+    legend.append('text')
+        .attr('x', 25)
+        .attr('y', 16)
+        .text('USDA Serving Size');
    });
 
 
