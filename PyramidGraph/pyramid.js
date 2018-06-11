@@ -110,11 +110,11 @@ d3.csv('./food.csv', function(data) {
 
   
   // ADD MARKS
-  svg.append('text')
+  var rightTitle = svg.append('text')
     .text('Paleo Serving Size')
     .style('text-anchor', 'middle')
     .attr('transform', translation(w-w/5, h-margin.bottom + 40));
-  svg.append('text')
+  var leftTitle = svg.append('text')
     .text('Vegan Serving Size')
     .style('text-anchor', 'middle')
     .attr('transform', translation(w-w + 240, h-margin.bottom + 40));
@@ -219,25 +219,41 @@ d3.csv('./food.csv', function(data) {
             .attr('y', function(d) { return yScale(d.category); })
             .attr("width", function(d) { return xScale(d.serving); });
         
+        leftTitle.text(selected + " Serving Size");
+        
     }
     
     var leftdrop = d3.select(".chart")
         .append("select")
         .attr("name", "left");
     
-    var leftopt = leftdrop.selectAll("option")
-        .data(data)
-        .enter()
-        .append("option");
+    var leftopt = leftdrop.append("option")
+        .text("USDA")
+        .attr("value", "USDA");
+    var leftopt = leftdrop.append("option")
+        .text("Zone")
+        .attr("value", "Zone");
+    var leftopt = leftdrop.append("option")
+        .text("Vegan")
+        .attr("value", "Vegan")
+        .attr("selected", "selected");
+    var leftopt = leftdrop.append("option")
+        .text("Paleo")
+        .attr("value", "Paleo");
+    
+//    var leftopt = leftdrop.selectAll("option")
+//        .data(data)
+//        .enter()
+//        .append("option");
     
     leftdrop.on("change", updateLeft);
     
-    leftopt.text(function (d) {
-        return d.diet;
-    }).attr("value", function (d) {
-//        console.log(d.diet);
-        return d.diet;
-    });
+//    leftopt.text(function (d) {
+//        return d.diet;
+//    }).attr("value", function (d) {
+////        console.log(d.diet);
+//        return d.diet;
+//    });
     
     
     
