@@ -226,6 +226,33 @@ d3.csv('./food.csv', function(data) {
         
     }
     
+    function updateRight() {
+        var selected = d3.event.target.value;
+        console.log(selected);
+        
+//        d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .remove();
+//        
+//        var leftBars = d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .data(data.filter(function(d) {return d.diet == selected;}));
+        
+        var rightBars = d3.select('.rightBarGroup')
+                .selectAll('rect')
+                .data(data.filter(function(d) {return d.diet == selected;}));
+    
+        rightBars
+            .transition()
+            .duration(1000)
+            .style('fill', function(d) { return color(d.category); })
+            .attr('y', function(d) { return yScale(d.category); })
+            .attr("width", function(d) { return xScale(d.serving); });
+        
+        rightTitle.text(selected + " Serving Size");
+        
+    }
+    
     var leftdrop = d3.select(".chart")
         .append("select")
         .attr("name", "left");
@@ -258,6 +285,26 @@ d3.csv('./food.csv', function(data) {
 //        return d.diet;
 //    });
     
+    
+    var rightdrop = d3.select(".chart")
+        .append("select")
+        .attr("name", "right");
+    
+    rightdrop.append("option")
+        .text("USDA")
+        .attr("value", "USDA");
+    rightdrop.append("option")
+        .text("Zone")
+        .attr("value", "Zone");
+    rightdrop.append("option")
+        .text("Vegan")
+        .attr("value", "Vegan");
+    rightdrop.append("option")
+        .text("Paleo")
+        .attr("value", "Paleo")
+        .attr("selected", "selected");
+    
+    rightdrop.on("change", updateRight);
     
     
    });
