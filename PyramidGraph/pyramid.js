@@ -203,19 +203,22 @@ d3.csv('./food.csv', function(data) {
         var selected = d3.event.target.value;
         console.log(selected);
         
-        d3.select('.leftBarGroup')
-                .selectAll('rect')
-                .remove();
+//        d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .remove();
+//        
+//        var leftBars = d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .data(data.filter(function(d) {return d.diet == selected;}));
         
         var leftBars = d3.select('.leftBarGroup')
                 .selectAll('rect')
                 .data(data.filter(function(d) {return d.diet == selected;}));
     
-        leftBars.enter().append('rect')
-            .attr('class', 'enter')
-            .attr('x',0)
+        leftBars
+            .transition()
+            .duration(1000)
             .style('fill', function(d) { return color(d.category); })
-            .attr('height', yScale.bandwidth())
             .attr('y', function(d) { return yScale(d.category); })
             .attr("width", function(d) { return xScale(d.serving); });
         
