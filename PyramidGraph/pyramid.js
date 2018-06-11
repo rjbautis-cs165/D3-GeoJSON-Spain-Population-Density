@@ -31,8 +31,6 @@ var categories;
 var yScale;
 var xScale;
 
-var dispatch = d3.dispatch("load", "statechange");
-
 d3.csv('./food.csv', function(data) {
   // Group databy year
   d3.select(".chart")
@@ -200,6 +198,49 @@ d3.csv('./food.csv', function(data) {
         .attr('x', 25)
         .attr('y', 16)
         .text('USDA Serving Size');
+    
+    function updateLeft() {
+        var selected = d3.event.target.value;
+        console.log(selected);
+        
+        d3.select('.leftBarGroup')
+                .selectAll('rect')
+                .remove();
+        
+        var leftBars = d3.select('.leftBarGroup')
+                .selectAll('rect')
+                .data(data.filter(function(d) {return d.diet == selected;}));
+    
+        leftBars.enter().append('rect')
+            .attr('class', 'enter')
+            .attr('x',0)
+            .style('fill', function(d) { return color(d.category); })
+            .attr('height', yScale.bandwidth())
+            .attr('y', function(d) { return yScale(d.category); })
+            .attr("width", function(d) { return xScale(d.serving); });
+        
+    }
+    
+    var leftdrop = d3.select(".chart")
+        .append("select")
+        .attr("name", "left");
+    
+    var leftopt = leftdrop.selectAll("option")
+        .data(data)
+        .enter()
+        .append("option");
+    
+    leftdrop.on("change", updateLeft);
+    
+    leftopt.text(function (d) {
+        return d.diet;
+    }).attr("value", function (d) {
+//        console.log(d.diet);
+        return d.diet;
+    });
+    
+    
+    
    });
 
 
