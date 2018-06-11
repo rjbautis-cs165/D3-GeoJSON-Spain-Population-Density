@@ -31,6 +31,8 @@ var categories;
 var yScale;
 var xScale;
 
+var dispatch = d3.dispatch("load", "statechange");
+
 d3.csv('./food.csv', function(data) {
   // Group databy year
   d3.select(".chart")
