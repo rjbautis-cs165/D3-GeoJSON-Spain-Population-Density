@@ -110,11 +110,11 @@ d3.csv('./food.csv', function(data) {
 
   
   // ADD MARKS
-  svg.append('text')
+  var rightTitle = svg.append('text')
     .text('Paleo Serving Size')
     .style('text-anchor', 'middle')
     .attr('transform', translation(w-w/5, h-margin.bottom + 40));
-  svg.append('text')
+  var leftTitle = svg.append('text')
     .text('Vegan Serving Size')
     .style('text-anchor', 'middle')
     .attr('transform', translation(w-w + 240, h-margin.bottom + 40));
@@ -198,6 +198,115 @@ d3.csv('./food.csv', function(data) {
         .attr('x', 25)
         .attr('y', 16)
         .text('USDA Serving Size');
+    
+    function updateLeft() {
+        var selected = d3.event.target.value;
+        console.log(selected);
+        
+//        d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .remove();
+//        
+//        var leftBars = d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .data(data.filter(function(d) {return d.diet == selected;}));
+        
+        var leftBars = d3.select('.leftBarGroup')
+                .selectAll('rect')
+                .data(data.filter(function(d) {return d.diet == selected;}));
+    
+        leftBars
+            .transition()
+            .duration(1000)
+            .style('fill', function(d) { return color(d.category); })
+            .attr('y', function(d) { return yScale(d.category); })
+            .attr("width", function(d) { return xScale(d.serving); });
+        
+        leftTitle.text(selected + " Serving Size");
+        
+    }
+    
+    function updateRight() {
+        var selected = d3.event.target.value;
+        console.log(selected);
+        
+//        d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .remove();
+//        
+//        var leftBars = d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .data(data.filter(function(d) {return d.diet == selected;}));
+        
+        var rightBars = d3.select('.rightBarGroup')
+                .selectAll('rect')
+                .data(data.filter(function(d) {return d.diet == selected;}));
+    
+        rightBars
+            .transition()
+            .duration(1000)
+            .style('fill', function(d) { return color(d.category); })
+            .attr('y', function(d) { return yScale(d.category); })
+            .attr("width", function(d) { return xScale(d.serving); });
+        
+        rightTitle.text(selected + " Serving Size");
+        
+    }
+    
+    var leftdrop = d3.select(".chart")
+        .append("select")
+        .attr("name", "left");
+    
+    var leftopt = leftdrop.append("option")
+        .text("USDA")
+        .attr("value", "USDA");
+    var leftopt = leftdrop.append("option")
+        .text("Zone")
+        .attr("value", "Zone");
+    var leftopt = leftdrop.append("option")
+        .text("Vegan")
+        .attr("value", "Vegan")
+        .attr("selected", "selected");
+    var leftopt = leftdrop.append("option")
+        .text("Paleo")
+        .attr("value", "Paleo");
+    
+//    var leftopt = leftdrop.selectAll("option")
+//        .data(data)
+//        .enter()
+//        .append("option");
+    
+    leftdrop.on("change", updateLeft);
+    
+//    leftopt.text(function (d) {
+//        return d.diet;
+//    }).attr("value", function (d) {
+////        console.log(d.diet);
+//        return d.diet;
+//    });
+    
+    
+    var rightdrop = d3.select(".chart")
+        .append("select")
+        .attr("name", "right");
+    
+    rightdrop.append("option")
+        .text("USDA")
+        .attr("value", "USDA");
+    rightdrop.append("option")
+        .text("Zone")
+        .attr("value", "Zone");
+    rightdrop.append("option")
+        .text("Vegan")
+        .attr("value", "Vegan");
+    rightdrop.append("option")
+        .text("Paleo")
+        .attr("value", "Paleo")
+        .attr("selected", "selected");
+    
+    rightdrop.on("change", updateRight);
+    
+    
    });
 
 
