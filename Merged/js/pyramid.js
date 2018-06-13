@@ -1,7 +1,7 @@
 var d3;
 
 // SET UP DIMENSIONS
-var w = 800,
+var w = 770,
   h = 400;
 
 // margin.middle is distance from center line to each y-axis
@@ -35,7 +35,7 @@ d3.csv('data/food.csv', function(data) {
   // Group databy year
   d3.select(".pyramid")
     .append('p')
-    .html('Diet Recommended Servings')
+    .html('Diet Recommended Servings Per Day')
     .style('text-align', 'center');
     
   var chart = d3.select(".pyramid")
@@ -113,14 +113,14 @@ d3.csv('data/food.csv', function(data) {
 
   
   // ADD MARKS
-  svg.append('text')
+  var rightTitle = svg.append('text')
     .text('Paleo Serving Size')
     .style('text-anchor', 'middle')
     .attr('transform', translation(w-w/5, h-margin.bottom + 40));
-  svg.append('text')
+  var leftTitle = svg.append('text')
     .text('Vegan Serving Size')
     .style('text-anchor', 'middle')
-    .attr('transform', translation(w-w + 240, h-margin.bottom + 40));
+    .attr('transform', translation(w-w + 150, h-margin.bottom + 40));
 
 
   // DRAW AXES
@@ -196,15 +196,118 @@ d3.csv('data/food.csv', function(data) {
     // the legend
     var legend = d3.select("#chart")
     legend.append('rect')
-        .attr('x', w - margin.left)
+        .attr('x', w - margin.left + 35)
         .attr('width', 20)
         .attr('height', 20)
         .style('fill', '#423e7e')
         .style('fill-opacity', "0.6");
     legend.append('text')
-        .attr('x', w - margin.left + 25)
+        .attr('x', w - margin.left + 60)
         .attr('y', 16)
         .text('USDA Serving Size');
+
+      function updateLeft() {
+        var selected = d3.event.target.value;
+        console.log(selected);
+        
+//        d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .remove();
+//        
+//        var leftBars = d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .data(data.filter(function(d) {return d.diet == selected;}));
+        
+        var leftBars = d3.select('.leftBarGroup')
+                .selectAll('rect')
+                .data(data.filter(function(d) {return d.diet == selected;}));
+    
+        leftBars
+            .transition()
+            .duration(1000)
+            .style('fill', function(d) { return color(d.category); })
+            .attr('y', function(d) { return yScale(d.category); })
+            .attr("width", function(d) { return xScale(d.serving); });
+        
+        leftTitle.text(selected + " Serving Size");
+        
+    }
+    
+    function updateRight() {
+        var selected = d3.event.target.value;
+        console.log(selected);
+        
+//        d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .remove();
+//        
+//        var leftBars = d3.select('.leftBarGroup')
+//                .selectAll('rect')
+//                .data(data.filter(function(d) {return d.diet == selected;}));
+        
+        var rightBars = d3.select('.rightBarGroup')
+                .selectAll('rect')
+                .data(data.filter(function(d) {return d.diet == selected;}));
+    
+        rightBars
+            .transition()
+            .duration(1000)
+            .style('fill', function(d) { return color(d.category); })
+            .attr('y', function(d) { return yScale(d.category); })
+            .attr("width", function(d) { return xScale(d.serving); });
+        
+        rightTitle.text(selected + " Serving Size");
+        
+    }
+    
+    var leftdrop = d3.select(".pyramid")
+        .append("select")
+        .attr("name", "left");
+    
+    leftopt = leftdrop.append("option")
+        .text("Zone")
+        .attr("value", "Zone");
+    leftopt = leftdrop.append("option")
+        .text("Vegan")
+        .attr("value", "Vegan")
+        .attr("selected", "selected");
+    leftopt = leftdrop.append("option")
+        .text("Paleo")
+        .attr("value", "Paleo");
+    
+//    var leftopt = leftdrop.selectAll("option")
+//        .data(data)
+//        .enter()
+//        .append("option");
+    
+    leftdrop.on("change", updateLeft);
+    
+//    leftopt.text(function (d) {
+//        return d.diet;
+//    }).attr("value", function (d) {
+////        console.log(d.diet);
+//        return d.diet;
+//    });
+    
+    
+    var rightdrop = d3.select(".pyramid")
+        .append("select")
+        .attr("name", "right");
+    
+
+    rightdrop.append("option")
+        .text("Zone")
+        .attr("value", "Zone");
+    rightdrop.append("option")
+        .text("Vegan")
+        .attr("value", "Vegan");
+    rightdrop.append("option")
+        .text("Paleo")
+        .attr("value", "Paleo")
+        .attr("selected", "selected");
+    
+    rightdrop.on("change", updateRight);
+    
    });
 
 
