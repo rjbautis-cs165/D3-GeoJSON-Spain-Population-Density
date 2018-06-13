@@ -17,9 +17,9 @@ Vegan,Fruits,5
 Vegan,Dairy ,6
 Vegan,Grains,3
 Vegan,Oil,2
-Paleo,Meat,4
-Paleo,Vegetables,2
-Paleo,Fruits,1
-Paleo,Dairy ,2
-Paleo,Grains,3
-Paleo,Oil,1
+Paleo,Meat,6
+Paleo,Vegetables,1.5
+Paleo,Fruits,1.5
+Paleo,Dairy ,0
+Paleo,Grains,0
+Paleo,Oil,1.5
