@@ -4,16 +4,13 @@
     <meta charset="utf-8">
     <title>Diet Recommendation Pyramid</title>
     <script type="text/javascript" src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-    <!-- Latest compiled and minified CSS -->
+      
+    <!--  Bootstrap 4 CDN  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/diet_theory.js"></script>
-    <script type="text/javascript" src="js/pyramid.js"></script>
+      
     <link rel="stylesheet" href="css/diet_theory.css" type="text/css" />
   </head>
 
@@ -36,6 +33,13 @@
             </div>
         </div>
       </div>
+        
+      <div class="row">
+        <div class ="col-md-3 col-sm-3" id="USDA_Plate"></div>
+        <div class ="col-md-3 col-sm-3" id="Paleo_Plate"></div>
+        <div class ="col-md-3 col-sm-3" id="Vegan_Plate"></div>
+        <div class ="col-md-3 col-sm-3" id="Zone_Plate"></div>
+      </div>
     </div>
     
     <div>
@@ -50,5 +54,8 @@
       </ol>
     </div>
     
+    <script type="text/javascript" src="js/diet_theory.js"></script>
+    <script type="text/javascript" src="js/pyramid.js"></script>
+    <script type="text/javascript" src="js/plates.js"></script>
   </body>
 </html>
