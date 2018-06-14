@@ -1,15 +1,63 @@
-paleo_beef: https://www.google.com/search?q=beef.png&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0mYDoyNLbAhWSLHwKHasQDesQ_AUICigB&biw=1440&bih=826#imgrc=EPDfiowbgy_BTM:
+paleo_beef: https://goo.gl/asNNnV
 
-paleo_lamb: https://www.google.com/search?biw=1440&bih=782&tbm=isch&sa=1&ei=UxEiW4ls0-T0A_e2g4gG&q=lamb+chop.png&oq=lamb+chop.png&gs_l=img.3..0i30k1.247.424.0.658.4.3.0.0.0.0.170.392.1j2.3.0....0...1c.1.64.img..3.1.123....0.DMM4gBIzWjs#imgrc=2M3ELWtXj0X58M:
+paleo_lamb: https://goo.gl/gyXTmJ
 
-paleo_oliveoil: https://www.google.com/search?biw=1440&bih=782&tbm=isch&sa=1&ei=jBEiW9KOJumG0wLk6biwAw&q=extra+virgin+olive+oil.png&oq=extra+virgin+olive+oil.png&gs_l=img.3...9525.11587.0.11691.18.17.0.0.0.0.147.1570.9j7.16.0....0...1c.1.64.img..9.1.86...0i7i30k1j0i7i5i30k1.0.jxm9LkQJYBY#imgrc=1hukPyld3NOGqM:
+paleo_oliveoil: https://goo.gl/CiRrEQ
 
-paleo_almonds: https://www.google.com/search?q=almonds.png&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiy4pnyyNLbAhWF7Z8KHRvqAqwQ_AUICigB&biw=1440&bih=782#imgrc=ZMs4g5Kxek21tM:
+paleo_almonds: https://goo.gl/ooGLhw
 
-paleo_eggs: https://www.google.com/search?q=eggs.png&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjdqc31yNLbAhXJxFQKHd1uAusQ_AUICigB&biw=1440&bih=782#imgrc=TfsH5gGJkGTa8M:
+paleo_eggs: https://goo.gl/Q9NG8a
 
-paleo_broccoli: https://www.google.com/search?q=broccoli.png&source=lnms&tbm=isch&sa=X&ved=0ahUKEwic_dP3yNLbAhUTEHwKHelzB_0Q_AUICigB&biw=1440&bih=782#imgrc=SAU4AwTOLGNZqM:
+paleo_broccoli: https://goo.gl/sPpHFM
 
-paleo_chicken: https://www.google.com/search?biw=1440&bih=782&tbm=isch&sa=1&ei=IhIiW_mTLsvg0gKN6oHQDw&q=chicken+drumstick+png&oq=chicken+drumstick+png&gs_l=img.3..0j0i5i30k1.2470.6012.0.6186.18.14.4.0.0.0.160.1411.9j5.14.0....0...1c.1.64.img..4.8.534...0i7i30k1j0i7i5i30k1j0i8i7i30k1.0.S8Jh9fT9Xhw#imgrc=hp-aehppK1Is3M:
+paleo_chicken: https://goo.gl/nDp6HP
 
-paleo_pork: https://www.google.com/search?q=pork.png&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjjr5mDytLbAhUIIDQIHQ70Dt0Q_AUICigB&biw=1440&bih=782#imgrc=3Uq4wCOK-Wa-ZM:
+paleo_pork: https://goo.gl/7hJZZG
+
+zone_avocado: https://goo.gl/xqsJEQ
+
+zone_cheese: https://goo.gl/VGfNYS
+
+zone_lettuce: https://goo.gl/51eZGo
+
+zone_mayonnaise: https://goo.gl/MLebNt
+
+zone_salsa: https://goo.gl/Wai8ma
+
+zone_sweetpotato: https://goo.gl/oE3h8a
+
+zone_tomato: https://goo.gl/cPnJ8M
+
+zone_tortilla: https://goo.gl/mjH8Aw
+
+usda_apple: https://goo.gl/7fCKAv
+
+usda_bread: https://goo.gl/dmn7de
+
+usda_brownie: https://goo.gl/RNnFvV
+
+usda_fries: https://goo.gl/4NCeCG
+
+usda_macandcheese: https://goo.gl/Pmgzm3
+
+usda_meat: https://goo.gl/RfEFuY
+
+usda_salad: https://goo.gl/uHonRX
+
+usda_yogurt: https://goo.gl/QsBXAs
+
+vegan_almondmilk: https://goo.gl/4v436H
+
+vegan_celery: https://goo.gl/vjenAW
+
+vegan_chickpeas: https://goo.gl/vKL4Js
+
+vegan_lentils: https://goo.gl/o6HZwE
+
+vegan_spinach: https://goo.gl/QBBKJz
+
+vegan_strawberry: https://goo.gl/Xw1Dwq
+
+vegan_tofu: https://goo.gl/eCjGGu
+
+vegan_walnut: https://goo.gl/XVPu5n

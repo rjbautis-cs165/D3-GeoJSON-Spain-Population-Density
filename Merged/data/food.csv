@@ -5,12 +5,12 @@ USDA,Fruits,4
 USDA,Meat,3
 USDA,Dairy ,2
 USDA,Oil,1
-Zone,Meat,1
-Zone,Vegetables,1
-Zone,Fruits,2
+Zone,Meat,3
+Zone,Vegetables,3
+Zone,Fruits,3
 Zone,Dairy ,2
-Zone,Grains,2
-Zone,Oil,4
+Zone,Grains,3
+Zone,Oil,1
 Vegan,Meat,0
 Vegan,Vegetables,4
 Vegan,Fruits,4

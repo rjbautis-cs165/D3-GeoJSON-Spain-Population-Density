@@ -1,8 +1,6 @@
 var d3;
 
-//var svg = d3.select("svg"),
-
-var margin1 = {top: 20, right: 40, bottom: 30, left: 40},
+var margin1 = {top: 20, right: 40, bottom: 60, left: 40},
     width = 530,
     height = 370;
 
@@ -59,8 +57,7 @@ d3.csv("data/nutrients.csv", function(d, i, columns) {
             .attr("x", function(d) { return x(d.data.Diet); })
             .attr("y", function(d) { return y(d[1]); })
             .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-            .attr("width", x.bandwidth())
-            .on("mouseover", function(d) { console.log("hi"); });
+            .attr("width", x.bandwidth());
         
         // Reference: https://stackoverflow.com/questions/20626150/display-text-on-rect-using-d3-js
         stack.append("text")
@@ -73,18 +70,23 @@ d3.csv("data/nutrients.csv", function(d, i, columns) {
         bars.append("g")
             .attr("class", "axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x))
+            .append("text")
+            .attr("x", 210)
+            .attr("y", 34)
+            .attr("fill", "#000")
+            .attr("font-size", 14)
+            .text("Diet Types");
 
         // y-axis
         bars.append("g")
             .attr("class", "axis")
             .call(d3.axisLeft(y).ticks(null, "s"))
-        .append("text")
+            .append("text")
             .attr("x", -250)
             .attr("y", 17)
             .attr("dy", "-3.32em")
             .attr("fill", "#000")
-//            .attr("font-weight", "bold")
             .attr("font-size", 14)
             .attr("text-anchor", "start")
             .attr("transform", "rotate(-90)")
@@ -94,9 +96,9 @@ d3.csv("data/nutrients.csv", function(d, i, columns) {
                 .attr("font-family", "sans-serif")
                 .attr("font-size", 12)
                 .attr("text-anchor", "end")
-            .selectAll("g")
-            .data(keys.slice().reverse())
-            .enter().append("g")
+                .selectAll("g")
+                .data(keys.slice().reverse())
+                .enter().append("g")
                 .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
         legend.append("rect")
