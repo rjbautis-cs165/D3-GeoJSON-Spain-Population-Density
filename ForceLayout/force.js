@@ -15,39 +15,47 @@ var svg = d3.select("body")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .attr("class", "example");
 
+// Define how many circles will be made
 var range = 8;
 
 var data = {
-    nodes:d3.range(0, range).map(function(d){ return {label: "l"+d , r: 40, color: "blue"}}),
+    nodes:d3.range(0, range).map(function(d){ return {label: "l"+d , r: 40, color: "lightblue"}}),
 }
+
 
 var simulation = d3.forceSimulation()
     .force("collision",d3.forceCollide().radius( function(d){return d.r }) )
     .force("charge", d3.forceManyBody().strength(-15))
-    .force("center", d3.forceCenter(960 / 2, 500 / 2))
+    .force("center", d3.forceCenter(width / 2, height / 2))
     .force("y", d3.forceY(0))
     .force("x", d3.forceX(0))
 
-
-var node = svg.append("g")
-    .attr("class", "nodes")
-    .selectAll("circle")
+var node = svg.selectAll("g")
     .data(data.nodes)
-    .enter()
-    .append("g")
-    .attr("id", "yes")
-    .append("circle")
-    .attr("r", function(d){  return d.r })
-    .attr("fill", function(d) {return d.color })
+    .enter().append("svg:g")
+    .attr("class", "node")
     .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
         .on("end", dragended));
 
+node.append("circle")
+    .attr("r", function(d){  return d.r })
+    .attr("fill", function(d) {return d.color });
+
+var imgs = d3.select(".example")
+    .selectAll(".node")
+    .append("svg:image")
+    .attr("xlink:href",  "apple.png")
+    .attr("x", function(d) { console.log(d); return -25;})
+    .attr("y", function(d) { return -25;})
+    .attr("height", 50)
+    .attr("width", 50);
+
+
 var ticked = function() {
     node
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
 }  
 
 simulation
@@ -64,6 +72,7 @@ function dragstarted(d) {
 function dragged(d) {
     d.fx = d3.event.x;
     d.fy = d3.event.y;
+
 }
 
 function dragended(d) {
