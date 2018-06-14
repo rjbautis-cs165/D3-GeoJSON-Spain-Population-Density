@@ -1,133 +1,163 @@
 [
   {
     "food": "apple",
-    "type": "USDA"
+    "category": "USDA",
+    "type": "fruits"
   },
   {
     "food": "bread",
-    "type": "USDA"
+    "category": "USDA",
+    "type": "grains"
   },
   {
     "food": "brownie",
-    "type": "USDA"
+    "category": "USDA",
+    "type": "oil"
   },
   {
     "food": "fries",
-    "type": "USDA"
+    "category": "USDA",
+    "type": "oil"
   },
   {
     "food": "macandcheese",
-    "type": "USDA"
+    "category": "USDA",
+    "type": "grains"
   },
   {
     "food": "meat",
-    "type": "USDA"
+    "category": "USDA",
+    "type": "meat"
   },
   {
     "food": "salad",
-    "type": "USDA"
+    "category": "USDA",
+    "type": "vegetables"
   },
   {
     "food": "yogurt",
-    "type": "USDA"
+    "category": "USDA",
+    "type": "dairy"
   },
   {
     "food": "avocado",
-    "type": "Zone"
+    "category": "Zone",
+    "type": "vegetables"
   },
   {
     "food": "cheese",
-    "type": "Zone"
+    "category": "Zone",
+    "type": "dairy"
   },
   {
     "food": "lettuce",
-    "type": "Zone"
+    "category": "Zone",
+    "type": "vegetables"
   },
   {
     "food": "mayonnaise",
-    "type": "Zone"
+    "category": "Zone",
+    "type": "oil"
   },
   {
     "food": "salsa",
-    "type": "Zone"
+    "category": "Zone",
+    "type": "oil"
   },
   {
     "food": "sweetpotato",
-    "type": "Zone"
+    "category": "Zone",
+    "type": "vegetables"
   },
   {
     "food": "tomato",
-    "type": "Zone"
+    "category": "Zone",
+    "type": "vegetables"
   },
   {
     "food": "tortilla",
-    "type": "Zone"
+    "category": "Zone",
+    "type": "grains"
   },
-
-
   {
     "food": "almonds",
-    "type": "Paleo"
+    "category": "Paleo",
+    "type": "oil"
   },
   {
     "food": "beef",
-    "type": "Paleo"
+    "category": "Paleo",
+    "type": "meat"
   },
   {
     "food": "broccoli",
-    "type": "Paleo"
+    "category": "Paleo",
+    "type": "vegetables"
   },
   {
     "food": "chicken",
-    "type": "Paleo"
+    "category": "Paleo",
+    "type": "meat"
   },
   {
     "food": "eggs",
-    "type": "Paleo"
+    "category": "Paleo",
+    "type": "dairy"
   },
   {
     "food": "lamb",
-    "type": "Paleo"
+    "category": "Paleo",
+    "type": "meat"
   },
   {
     "food": "oliveoil",
-    "type": "Paleo"
+    "category": "Paleo",
+    "type": "oil"
   },
   {
     "food": "pork",
-    "type": "Paleo"
+    "category": "Paleo",
+    "type": "meat"
   },
 
   {
     "food": "almondmilk",
-    "type": "Vegan"
+    "category": "Vegan",
+    "type": "dairy"
   },
   {
     "food": "celery",
-    "type": "Vegan"
+    "category": "Vegan",
+    "type": "vegetables"
   },
   {
     "food": "chickpeas",
-    "type": "Vegan"
+    "category": "Vegan",
+    "type": "vegetables"
   },
   {
     "food": "lentils",
-    "type": "Vegan"
+    "category": "Vegan",
+    "type": "grains"
   },
   {
     "food": "spinach",
-    "type": "Vegan"
+    "category": "Vegan",
+    "type": "vegetables"
   },
   {
     "food": "strawberry",
-    "type": "Vegan"
+    "category": "Vegan",
+    "type": "fruits"
   },
   {
     "food": "tofu",
-    "type": "Vegan"
+    "category": "Vegan",
+    "type": "vegetables"
   },
   {
     "food": "walnut",
-    "type": "Vegan"
+    "category": "Vegan",
+    "type": "oil"
   }
 ]
