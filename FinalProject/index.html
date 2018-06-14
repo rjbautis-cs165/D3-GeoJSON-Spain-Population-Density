@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Diet Recommendation Pyramid</title>
+    <title>Food Diet Theories</title>
     <script type="text/javascript" src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
       
     <!--  Bootstrap 4 CDN  -->
@@ -21,7 +21,7 @@
       <br />
     </div>
       
-    <p><b>Disclaimer: This visualization is very laggy on Google Chrome. Please use Mozilla Firefox for better performance.</b></p>
+    <p><b>Disclaimer: This visualization can be laggy on Google Chrome. Use Mozilla Firefox for potentially better performance.</b></p>
     
     <hr>
       
@@ -53,7 +53,57 @@
     <br />
     <hr>
       
-    <div class="row">
+    <script type="text/javascript" src="js/diet_theory.js"></script>
+    <script type="text/javascript" src="js/pyramid.js"></script>
+    <script type="text/javascript" src="js/plates.js"></script>
+  </body>
+    
+  <footer >
+      <div style="text-align: center;">
+          <hX><b>Created By:</b></hX>
+          <p></p>
+          Ryan Bautista (rjbautis@ucsc.edu) <br />
+          Soham Saha (sjsaha@ucsc.edu)<br />
+          Kristine Nguyen (krkinguy@ucsc.edu)<br />
+          Nikolai Chen (nmchen@ucsc.edu)<br />
+          <p></p>
+          
+          In collaboration with Suresh K. Lodha, Karthik Balakrishna, Christopher Bui, Janesh Chhabra <br />
+          
+          <p></p>
+            <a href="https://rjbautis-cs165.github.io/FinalProject/index.html">Github Link</a> <br />
+          <p></p>
+          
+          <b>Designed For:</b> <br />
+          <p></p>
+          
+          CMPS 165: Data Programming for Visualization, Spring 2018 <br />
+          <p></p>
+          <hr>
+          
+      </div>
+      <div class="row">
+        
+        <div class="col-3">
+            <hX>Files Submitted</hX>
+            <ol>
+                <li>
+                    <a href="https://github.com/rjbautis-cs165/rjbautis-cs165.github.io/tree/master/Merged">Repository</a>
+                </li>
+                index.html <br />
+                diet_theory.css <br />
+                diet_theory.js <br />
+                plates.js <br />
+                pyramid.js <br />
+                food.csv <br />
+                foods.json <br />
+                imagesources.txt <br />
+                nutrients.csv <br />
+                various images <br />
+                plate.svg
+            </ol>
+        </div>
+        
         <div class="col-3">
             <hX>Data Sources</hX>
             <ol>
@@ -84,32 +134,11 @@
                 <li>
                     <a href=https://ndb.nal.usda.gov/ndb/search/list>Food Nutrition Values</a>
                 </li>
-                
             </ol>
         </div>
-        
+          
         <div class="col-3">
-            <hX>Working Files</hX>
-            <ol>
-                <li>
-                    <a href="https://github.com/rjbautis-cs165/rjbautis-cs165.github.io/tree/master/Merged">Repository</a>
-                </li>
-                index.html <br />
-                diet_theory.css <br />
-                diet_theory.js <br />
-                plates.js <br />
-                pyramid.js <br />
-                food.csv <br />
-                foods.json <br />
-                imagesources.txt <br />
-                nutrients.csv <br />
-                various images <br />
-                plate.svg
-            </ol>
-        </div>
-        
-        <div class="col-3">
-            <hX>Relevant Visualizations</hX>
+            <hX>Visualizations Sources</hX>
             <ol>
                 <li>
                     <a href="https://sureshlodha.github.io/CMPS165_Winter15_FinalProjects/FruitsAndVegetables/">Inside Fruits and Vegetables</a>    
@@ -151,13 +180,5 @@
             </ol>
         </div>
     </div>
-      
-    <script type="text/javascript" src="js/diet_theory.js"></script>
-    <script type="text/javascript" src="js/pyramid.js"></script>
-    <script type="text/javascript" src="js/plates.js"></script>
-  </body>
-    
-  <footer style="font-size:10px">
-    Created by Ryan Bautista, Soham Saha, Kristine Nguyen, and Nikolai Chen in collaboration with Suresh K Lodha, Karthik Balakrishna, Christopher Bui, and Janesh Chhabra for UCSC Spring 2018 CMPS165.
   </footer>
 </html>
