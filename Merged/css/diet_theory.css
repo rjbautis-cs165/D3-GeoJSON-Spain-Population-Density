@@ -26,8 +26,17 @@ rect {
   font: 10px sans-serif;
   text-align: right;
   padding: 3px;
-  margin: 1px;
+  margin: 10px;
   color: white;
   width: auto;
   height: auto;
+}
+
+
+.spacing {
+    margin-top: 90px;
+}
+
+.spaceout {
+    margin: 20px;
 }

@@ -196,13 +196,13 @@ d3.csv('data/food.csv', function(data) {
     // the legend
     var legend = d3.select("#chart")
     legend.append('rect')
-        .attr('x', w - margin.left + 35)
+        .attr('x', w - margin.left - 560)
         .attr('width', 20)
         .attr('height', 20)
         .style('fill', '#423e7e')
         .style('fill-opacity', "0.6");
     legend.append('text')
-        .attr('x', w - margin.left + 60)
+        .attr('x', w - margin.left - 530)
         .attr('y', 16)
         .text('USDA Serving Size');
 
@@ -262,6 +262,7 @@ d3.csv('data/food.csv', function(data) {
     
     var leftdrop = d3.select(".pyramid")
         .append("select")
+        .attr('class', 'spaceout')
         .attr("name", "left");
     
     leftopt = leftdrop.append("option")
@@ -294,7 +295,6 @@ d3.csv('data/food.csv', function(data) {
         .append("select")
         .attr("name", "right");
     
-
     rightdrop.append("option")
         .text("Zone")
         .attr("value", "Zone");
