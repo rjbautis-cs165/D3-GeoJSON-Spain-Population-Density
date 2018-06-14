@@ -98,6 +98,7 @@ d3.csv('data/food.csv', function(data) {
   var svg = d3.select("#chart");
     
     
+    
   // MAKE GROUPS FOR EACH SIDE OF CHART
   // scale(-1,1) is used to reverse the left side so the bars grow left instead of right
   var leftBarGroup = svg.append('g').attr('class', 'leftBarGroup')
@@ -116,11 +117,16 @@ d3.csv('data/food.csv', function(data) {
   var rightTitle = svg.append('text')
     .text('Paleo Serving Size')
     .style('text-anchor', 'middle')
-    .attr('transform', translation(w-w/5, h-margin.bottom + 40));
+    .attr('transform', translation(w-w/5, h-margin.bottom + 30));
   var leftTitle = svg.append('text')
     .text('Vegan Serving Size')
     .style('text-anchor', 'middle')
-    .attr('transform', translation(w-w + 150, h-margin.bottom + 40));
+    .attr('transform', translation(w-w + 150, h-margin.bottom + 30));
+    
+  var dislcaimer = svg.append('text')
+    .text('Disclaimer: These serving sizes are approximated to the nearest whole number.')
+    .attr('transform', translation(0, 399))
+    .attr("font-size", 7);
 
 
   // DRAW AXES

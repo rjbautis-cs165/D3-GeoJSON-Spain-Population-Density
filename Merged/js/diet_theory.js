@@ -77,6 +77,14 @@ d3.csv("data/nutrients.csv", function(d, i, columns) {
             .attr("fill", "#000")
             .attr("font-size", 14)
             .text("Diet Types");
+    
+        bars.append("g")
+            .append("text")
+            .attr("x", 0)
+            .attr("y", 420)
+            .attr("fill", "#000")
+            .attr("font-size", 7)
+            .text("Disclaimer: These values are approximated to the nearest value.");
 
         // y-axis
         bars.append("g")
