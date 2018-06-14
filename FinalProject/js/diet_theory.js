@@ -1,3 +1,6 @@
+// Reference:
+// - https://bl.ocks.org/mbostock/3886208
+
 var d3;
 
 var margin1 = {top: 20, right: 40, bottom: 60, left: 40},
@@ -15,11 +18,6 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
     .range(["#993333", "#a1bb00", "#e60000"]);
 
-//Define Tooltip here
-var tooltip = d3.select("body")
-    .append("div")
-    .attr("id", "tooltip")
-    .attr("class", "hidden");
 
 d3.csv("data/nutrients.csv", function(d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];

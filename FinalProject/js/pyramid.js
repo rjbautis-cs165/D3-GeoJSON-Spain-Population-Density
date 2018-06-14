@@ -1,3 +1,6 @@
+// Reference:
+// - https://bl.ocks.org/borgar/b952bb581923c9993d68
+
 var d3;
 
 // SET UP DIMENSIONS
@@ -32,130 +35,129 @@ var yScale;
 var xScale;
 
 d3.csv('data/food.csv', function(data) {
-  // Group databy year
-  d3.select(".pyramid")
-    .append('p')
-    .html('Diet Recommended Servings Per Day')
-    .style('text-align', 'center');
+    // Group databy year
+    d3.select(".pyramid")
+        .append('p')
+        .html('Diet Recommended Servings Per Day')
+        .style('text-align', 'center');
     
-  var chart = d3.select(".pyramid")
-    .append('svg')
-    .attr("id", "chart")
-    .attr("height", h)
-    .attr("width", w)
-    .style('margin', 'auto')
-    .style('display', 'block')
-    .append('g')
-    .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')');
+    var chart = d3.select(".pyramid")
+        .append('svg')
+        .attr("id", "chart")
+        .attr("height", h)
+        .attr("width", w)
+        .style('margin', 'auto')
+        .style('display', 'block')
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')');
 
-  var maxValue = Math.max(
-    d3.max(data, function(d) {
-      return +d.serving;
-    }),
-    d3.max(data, function(d) {
-      return +d.serving;
-    })
-  );
+    var maxValue = Math.max(
+        d3.max(data, function(d) {
+            return +d.serving;
+        }),
+        d3.max(data, function(d) {
+            return +d.serving;
+        })
+    );
   
-  // d3.scale.linear()
-  xScale = d3.scaleLinear()
-    .domain([0, maxValue])
-    .range([0, regionWidth -9])
-    .nice();
+    // d3.scale.linear()
+    xScale = d3.scaleLinear()
+        .domain([0, maxValue])
+        .range([0, regionWidth -9])
+        .nice();
     
-  // d3.scale.ordinal()
-  yScale = d3.scaleBand()
-    .domain(data.map(function(d) {
-      return d.category;
-    }))
-    .rangeRound([h - margin.bottom, 0], 0.1);
+    // d3.scale.ordinal()
+    yScale = d3.scaleBand()
+                .domain(data.map(function(d) {
+                    return d.category;
+                }))
+                .rangeRound([h - margin.bottom, 0], 0.1);
 
     
-  // d3.scale.ordinal()
-  var color = d3.scaleOrdinal()
-    .range(["#b2907c", "#a1bb00", "#ed3030", "#8acbe3", "#ffba00", "#ff8c00"]);
+    // d3.scale.ordinal()
+    var color = d3.scaleOrdinal()
+        .range(["#b2907c", "#a1bb00", "#ed3030", "#8acbe3", "#ffba00", "#ff8c00"]);
 
-    
-  // d3.svg.axis()
-  var yAxisLeft = d3.axisRight(yScale)
-    .tickSize(4, 0)
-    .tickPadding(margin.middle + 12);
 
-  var yAxisRight = d3.axisLeft(yScale)
-    .tickSize(4, 0)
-    .tickFormat('');
+    // d3.svg.axis()
+    var yAxisLeft = d3.axisRight(yScale)
+        .tickSize(4, 0)
+        .tickPadding(margin.middle + 12);
 
-  var xAxisRight = d3.axisBottom(xScale)
-    .tickValues([1,2,3,4,5,6,7,8,9])
-    .tickSize(4, 1)
-    .tickFormat(d3.format(''));
+    var yAxisRight = d3.axisLeft(yScale)
+        .tickSize(4, 0)
+        .tickFormat('');
 
-  var xAxisLeft = d3.axisBottom(xScale.copy().range([pointA, 8]))
-    .tickValues([1,2,3,4,5,6,7,8,9])
-    .tickSize(4, 1)
-    .tickFormat(d3.format(''));
+    var xAxisRight = d3.axisBottom(xScale)
+        .tickValues([1,2,3,4,5,6,7,8,9])
+        .tickSize(4, 1)
+        .tickFormat(d3.format(''));
 
-  var svg = d3.select("#chart");
+    var xAxisLeft = d3.axisBottom(xScale.copy().range([pointA, 8]))
+        .tickValues([1,2,3,4,5,6,7,8,9])
+        .tickSize(4, 1)
+        .tickFormat(d3.format(''));
+
+    var svg = d3.select("#chart");
     
     
+    // MAKE GROUPS FOR EACH SIDE OF CHART
+    // scale(-1,1) is used to reverse the left side so the bars grow left instead of right
+    var leftBarGroup = svg.append('g').attr('class', 'leftBarGroup')
+                            .attr('transform', translation(pointA, 0) + 'scale(-1,1)');
+    var rightBarGroup = svg.append('g').attr('class', 'rightBarGroup')
+                            .attr('transform', translation(pointB, 0));
     
-  // MAKE GROUPS FOR EACH SIDE OF CHART
-  // scale(-1,1) is used to reverse the left side so the bars grow left instead of right
-  var leftBarGroup = svg.append('g').attr('class', 'leftBarGroup')
-    .attr('transform', translation(pointA, 0) + 'scale(-1,1)');
-  var rightBarGroup = svg.append('g').attr('class', 'rightBarGroup')
-    .attr('transform', translation(pointB, 0));
-    
-//USDA
+    //USDA
     var leftUSDAGroup = svg.append('g').attr('class', 'leftUSDAGroup')
-    .attr('transform', translation(pointA, 0) + 'scale(-1,1)');
-      var rightUSDAGroup = svg.append('g').attr('class', 'rightUSDAGroup')
-    .attr('transform', translation(pointB, 0));
+                            .attr('transform', translation(pointA, 0) + 'scale(-1,1)');
+    var rightUSDAGroup = svg.append('g').attr('class', 'rightUSDAGroup')
+                            .attr('transform', translation(pointB, 0));
 
   
-  // ADD MARKS
-  var rightTitle = svg.append('text')
-    .text('Paleo Serving Size')
-    .style('text-anchor', 'middle')
-    .attr('transform', translation(w-w/5, h-margin.bottom + 30));
-  var leftTitle = svg.append('text')
-    .text('Vegan Serving Size')
-    .style('text-anchor', 'middle')
-    .attr('transform', translation(w-w + 150, h-margin.bottom + 30));
-    
-  var dislcaimer = svg.append('text')
-    .text('Disclaimer: These serving sizes are approximated to the nearest whole number. The values are accurate for a healthy young adult male')
-    .attr('transform', translation(0, 399))
-    .attr("font-size", 7);
+    // ADD MARKS
+    var rightTitle = svg.append('text')
+        .text('Paleo Serving Size')
+        .style('text-anchor', 'middle')
+        .attr('transform', translation(w-w/5, h-margin.bottom + 30));
+    var leftTitle = svg.append('text')
+        .text('Vegan Serving Size')
+        .style('text-anchor', 'middle')
+        .attr('transform', translation(w-w + 150, h-margin.bottom + 30));
+        
+    var dislcaimer = svg.append('text')
+        .text('Disclaimer: These serving sizes are approximated to the nearest whole number. The values are accurate for a healthy young adult male')
+        .attr('transform', translation(0, 399))
+        .attr("font-size", 7);
 
 
-  // DRAW AXES
-  svg.append('g')
-    .attr('class', 'axis y left')
-    .attr('transform', translation(pointA, 0))
-    .call(yAxisLeft)
-    .selectAll('text')
-    .style('text-anchor', 'middle');
+    // DRAW AXES
+    svg.append('g')
+        .attr('class', 'axis y left')
+        .attr('transform', translation(pointA, 0))
+        .call(yAxisLeft)
+        .selectAll('text')
+        .style('text-anchor', 'middle');
 
-  svg.append('g')
-    .attr('class', 'axis y right')
-    .attr('transform', translation(pointB, 0))
-    .call(yAxisRight);
+    svg.append('g')
+        .attr('class', 'axis y right')
+        .attr('transform', translation(pointB, 0))
+        .call(yAxisRight);
 
-  svg.append('g')
-    .attr('class', 'axis x left')
-    .attr('transform', translation(0, h-margin.bottom))
-    .call(xAxisLeft);
+    svg.append('g')
+        .attr('class', 'axis x left')
+        .attr('transform', translation(0, h-margin.bottom))
+        .call(xAxisLeft);
 
-  svg.append('g')
-    .attr('class', 'axis x right')
-    .attr('transform', translation(pointB, h-margin.bottom))
-    .call(xAxisRight);
+    svg.append('g')
+        .attr('class', 'axis x right')
+        .attr('transform', translation(pointB, h-margin.bottom))
+        .call(xAxisRight);
 
-// DRAW THE BARS
+    // DRAW THE BARS
     var leftUSDABar = d3.select('.leftUSDAGroup').selectAll('rectUSDA').data(data.filter(function(d) {return d.diet =="USDA";}));
     var rightUSDABar = d3.select('.rightUSDAGroup').selectAll('rectUSDA').data(data.filter(function(d) {return d.diet =="USDA";}));
-    
+
     var leftBars = d3.select('.leftBarGroup').selectAll('rect').data(data.filter(function(d) {return d.diet =="Vegan";}));
     var rightBars = d3.select('.rightBarGroup').selectAll('rect').data(data.filter(function(d) {return d.diet =="Paleo";}));
     
@@ -212,7 +214,7 @@ d3.csv('data/food.csv', function(data) {
         .attr('y', 16)
         .text('USDA Serving Size');
 
-      function updateLeft() {
+    function updateLeft() {
         var selected = d3.event.target.value;
         console.log(selected);
         
@@ -236,7 +238,6 @@ d3.csv('data/food.csv', function(data) {
             .attr("width", function(d) { return xScale(d.serving); });
         
         leftTitle.text(selected + " Serving Size");
-        
     }
     
     function updateRight() {
@@ -262,8 +263,7 @@ d3.csv('data/food.csv', function(data) {
             .attr('y', function(d) { return yScale(d.category); })
             .attr("width", function(d) { return xScale(d.serving); });
         
-        rightTitle.text(selected + " Serving Size");
-        
+        rightTitle.text(selected + " Serving Size");   
     }
     
     var leftdrop = d3.select(".pyramid")
@@ -314,4 +314,4 @@ d3.csv('data/food.csv', function(data) {
     
     rightdrop.on("change", updateRight);
     
-   });
+});

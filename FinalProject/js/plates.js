@@ -36,7 +36,8 @@ var colors = [
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 
-
+// Reference:
+// - https://bl.ocks.org/mbostock/1014829
 d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
     if (error) throw error;
     document.getElementById("Paleo_Plate").appendChild(xml.documentElement);

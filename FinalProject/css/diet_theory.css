@@ -2,15 +2,6 @@ body {
     padding: 20px;
 }
 
-
-/*
-rect {
-  fill-opacity: 0.6;
-  fill: steelblue;
-}
-*/
-
-
 .rectUSDA{
     fill:none;
     border: 5px solid red;
