@@ -315,8 +315,3 @@ d3.csv('data/food.csv', function(data) {
     rightdrop.on("change", updateRight);
     
    });
-
-
-
-
-

@@ -6,7 +6,7 @@ paleo_oliveoil: https://goo.gl/CiRrEQ
 
 paleo_almonds: https://goo.gl/ooGLhw
 
-paleo_eggs: https://goo.gl/Q9NG8a
+paleo_banana: https://goo.gl/vhxi8q
 
 paleo_broccoli: https://goo.gl/sPpHFM
 
@@ -46,7 +46,7 @@ usda_salad: https://goo.gl/uHonRX
 
 usda_yogurt: https://goo.gl/QsBXAs
 
-vegan_almondmilk: https://goo.gl/4v436H
+vegan_oats: https://goo.gl/Kzu3TK
 
 vegan_celery: https://goo.gl/vjenAW
 
