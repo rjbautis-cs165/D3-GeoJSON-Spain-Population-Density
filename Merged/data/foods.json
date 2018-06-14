@@ -180,13 +180,13 @@
     "carbohydrate": "0" 
   },
   {
-    "food": "eggs",
-    "name": "Eggs",
+    "food": "bananas",
+    "name": "Bananas",
     "category": "Paleo",
-    "type": "dairy",
-    "protein": "12.51",
-    "fat": "9.47",
-    "carbohydrate": "0.71" 
+    "type": "fruits",
+    "protein": "1.09",
+    "fat": "0.33",
+    "carbohydrate": "22.84" 
   },
   {
     "food": "lamb",
@@ -217,13 +217,13 @@
   },
 
   {
-    "food": "almondmilk",
-    "name": "Almond Milk",
+    "food": "oats",
+    "name": "Oats",
     "category": "Vegan",
-    "type": "dairy",
-    "protein": "0.40",
-    "fat": "0.96",
-    "carbohydrate": "1.31" 
+    "type": "grains",
+    "protein": "17.03",
+    "fat": "7.97",
+    "carbohydrate": "62.94" 
   },
   {
     "food": "celery",
@@ -236,9 +236,9 @@
   },
   {
     "food": "chickpeas",
-    "name": "Chick peas",
+    "name": "Chickpeas",
     "category": "Vegan",
-    "type": "vegetables",
+    "type": "grains",
     "protein": "4.80",
     "fat": "16.30",
     "carbohydrate": "63.90" 
