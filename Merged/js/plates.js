@@ -11,6 +11,12 @@ var range = 8;
 d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
     if (error) throw error;
     document.getElementById("USDA_Plate").appendChild(xml.documentElement);
+    
+    d3.select("#USDA_Plate")
+         .append("text")
+        .text("hi there")
+        .text("The regular USDA diet is the recommended amount of food that the USA believes a healty adult should be consuming every day.")
+         .style("text-anchor", "middle");
 
     
     //Define SVG
@@ -93,6 +99,11 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
     if (error) throw error;
     document.getElementById("Paleo_Plate").appendChild(xml.documentElement);
    
+    d3.select("#Paleo_Plate")
+         .append("text")
+        .text("hi there")
+        .text("The Paleo diet is modeled after what our prehistoric ancestors ate. No processes or farmed foods. Eat whatever is found naturally in nature.")
+         .style("text-anchor", "middle");
     //Define SVG
     var svg = d3.select("#Paleo_Plate")
        .select("svg")
@@ -168,7 +179,13 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
 
 d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
     if (error) throw error;
-    document.getElementById("Vegan_Plate").appendChild(xml.documentElement);   
+    document.getElementById("Vegan_Plate").appendChild(xml.documentElement); 
+    
+    d3.select("#Vegan_Plate")
+         .append("text")
+        .text("hi there")
+        .text("The Vegan diet focuses on the consumptions of naturally grown foods. No meat or any form of animal products are eaten.")
+         .style("text-anchor", "middle");
 
     //Define SVG
     var svg = d3.select("#Vegan_Plate")
@@ -247,6 +264,13 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
 d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
     if (error) throw error;
     document.getElementById("Zone_Plate").appendChild(xml.documentElement);
+    
+    d3.select("#Zone_Plate")
+         .append("text")
+        .text("hi there")
+        .text("The Zone diet focuses on a diet where everything is balanced but it states that we should consume less grains and focus more on meat and vegetables.")
+         .style("text-anchor", "middle");
+    
     //Define SVG
     var svg = d3.select("#Zone_Plate")
         .select("svg")
