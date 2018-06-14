@@ -11,12 +11,19 @@ var margin = {left: 80, right: 80, top: 50, bottom: 50 },
 
 //Define SVG
 var svg = d3.select("body")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .append("svg");
+
+
+    svg.attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .attr("class", "force_layout");
+
+    // svg.append("g")
+    // .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    // .attr("class", "force_layout")
+
 
 // Define how many circles will be made
 var range = 8;

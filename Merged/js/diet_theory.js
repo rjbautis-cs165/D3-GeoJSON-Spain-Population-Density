@@ -23,7 +23,7 @@ var tooltip = d3.select("body")
     .attr("id", "tooltip")
     .attr("class", "hidden");
 
-d3.csv("data/test.csv", function(d, i, columns) {
+d3.csv("data/nutrients.csv", function(d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
     d.total = t;
     return d;
