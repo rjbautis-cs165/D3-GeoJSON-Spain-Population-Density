@@ -11,12 +11,12 @@ Zone,Fruits,2
 Zone,Dairy ,2
 Zone,Grains,2
 Zone,Oil,4
-Vegan,Meat,3
-Vegan,Vegetables,3
-Vegan,Fruits,5
-Vegan,Dairy ,6
-Vegan,Grains,3
-Vegan,Oil,2
+Vegan,Meat,0
+Vegan,Vegetables,4
+Vegan,Fruits,4
+Vegan,Dairy ,0
+Vegan,Grains,5
+Vegan,Oil,1
 Paleo,Meat,6
 Paleo,Vegetables,1.5
 Paleo,Fruits,1.5
