@@ -1,3 +1,8 @@
+// References: 
+// - https://bl.ocks.org/shimizu/e6209de87cdddde38dadbb746feaf3a3
+// - http://jsfiddle.net/5acQ4/15/
+// - https://stackoverflow.com/questions/22456235/force-layout-nodes-filled-with-images
+
 var d3, document;
 
 var colors = [
@@ -26,6 +31,10 @@ var colors = [
         color: "#ff8c00"
     },
 ]
+
+//Define Tooltip here
+var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+
 
 
 d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
@@ -61,7 +70,20 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
-                .on("end", dragended));
+                .on("end", dragended))
+
+            // Reference: 
+            // - https://bl.ocks.org/alandunning/274bf248fd0f362d64674920e85c1eb7
+            // - https://joshtronic.com/2016/02/14/how-to-capitalize-the-first-letter-in-a-string-in-javascript/
+            .on("mouseenter", function(d){
+                console.log(d);
+                tooltip
+                  .style("left", d3.event.pageX  + "px")
+                  .style("top", d3.event.pageY  + "px")
+                  .style("display", "inline-block")
+                  .html(d.food.replace(/^\w/, c => c.toUpperCase()) + "<br>" + d.type);
+            })
+            .on("mouseout", function(d){ tooltip.style("display", "none");});
 
         node.append("circle")
             .attr("r", 90)
@@ -71,7 +93,6 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
                 }
             })
             .style('fill-opacity', "0.6");
-    
 
         // For each node, append a food image
         node.append("svg:image")
@@ -81,7 +102,8 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             .attr("x", function(d) { return -85;})
             .attr("y", function(d) { return -85;})
             .attr("height", 170)
-            .attr("width", 170);
+            .attr("width", 170)
+            .attr("pointer-events", "none");
 
         var ticked = function() {
             node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
@@ -108,6 +130,7 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
         }
 
         function dragged(d) {
+            tooltip.style("display", "none");
             d.fx = d3.event.x;
             d.fy = d3.event.y;
 
@@ -155,7 +178,19 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
-                .on("end", dragended));
+                .on("end", dragended))
+
+            // Reference: 
+            // - https://bl.ocks.org/alandunning/274bf248fd0f362d64674920e85c1eb7
+            // - https://joshtronic.com/2016/02/14/how-to-capitalize-the-first-letter-in-a-string-in-javascript/
+            .on("mouseenter", function(d){
+                tooltip
+                  .style("left", d3.event.pageX  + "px")
+                  .style("top", d3.event.pageY  + "px")
+                  .style("display", "inline-block")
+                  .html(d.food.replace(/^\w/, c => c.toUpperCase()) + "<br>" + d.type);
+            })
+            .on("mouseout", function(d){ tooltip.style("display", "none");});
 
         node.append("circle")
             .attr("r", 90)
@@ -166,7 +201,6 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             })
             .style('fill-opacity', "0.6");
     
-
         // For each node, append a food image
         node.append("svg:image")
             .attr("xlink:href",  function(d) { 
@@ -175,7 +209,8 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             .attr("x", function(d) { return -85;})
             .attr("y", function(d) { return -85;})
             .attr("height", 170)
-            .attr("width", 170);
+            .attr("width", 170)
+            .attr("pointer-events", "none");
 
         var ticked = function() {
             node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
@@ -202,6 +237,7 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
         }
 
         function dragged(d) {
+            tooltip.style("display", "none");
             d.fx = d3.event.x;
             d.fy = d3.event.y;
 
@@ -249,7 +285,19 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
-                .on("end", dragended));
+                .on("end", dragended))
+
+            // Reference: 
+            // - https://bl.ocks.org/alandunning/274bf248fd0f362d64674920e85c1eb7
+            // - https://joshtronic.com/2016/02/14/how-to-capitalize-the-first-letter-in-a-string-in-javascript/
+            .on("mouseenter", function(d){
+                tooltip
+                  .style("left", d3.event.pageX  + "px")
+                  .style("top", d3.event.pageY  + "px")
+                  .style("display", "inline-block")
+                  .html(d.food.replace(/^\w/, c => c.toUpperCase()) + "<br>" + d.type);
+            })
+            .on("mouseout", function(d){ tooltip.style("display", "none");});
 
         node.append("circle")
             .attr("r", 90)
@@ -269,7 +317,9 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             .attr("x", function(d) { return -85;})
             .attr("y", function(d) { return -85;})
             .attr("height", 170)
-            .attr("width", 170);
+            .attr("width", 170)
+            .attr("pointer-events", "none");
+
 
         var ticked = function() {
             node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
@@ -296,6 +346,7 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
         }
 
         function dragged(d) {
+            tooltip.style("display", "none");
             d.fx = d3.event.x;
             d.fy = d3.event.y;
 
@@ -343,7 +394,19 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
-                .on("end", dragended));
+                .on("end", dragended))
+        
+            // Reference: 
+            // - https://bl.ocks.org/alandunning/274bf248fd0f362d64674920e85c1eb7
+            // - https://joshtronic.com/2016/02/14/how-to-capitalize-the-first-letter-in-a-string-in-javascript/
+            .on("mouseenter", function(d){
+                tooltip
+                  .style("left", d3.event.pageX  + "px")
+                  .style("top", d3.event.pageY  + "px")
+                  .style("display", "inline-block")
+                  .html(d.food.replace(/^\w/, c => c.toUpperCase()) + "<br>" + d.type);
+            })
+            .on("mouseout", function(d){ tooltip.style("display", "none");});
 
         node.append("circle")
             .attr("r", 90)
@@ -363,7 +426,8 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             .attr("x", function(d) { return -85;})
             .attr("y", function(d) { return -85;})
             .attr("height", 170)
-            .attr("width", 170);
+            .attr("width", 170)
+            .attr("pointer-events", "none");
 
         var ticked = function() {
             node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
@@ -390,6 +454,7 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
         }
 
         function dragged(d) {
+            tooltip.style("display", "none");
             d.fx = d3.event.x;
             d.fy = d3.event.y;
 

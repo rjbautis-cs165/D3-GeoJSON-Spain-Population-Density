@@ -11,7 +11,6 @@ rect {
 */
 
 
-
 .rectUSDA{
     fill:none;
     border: 5px solid red;
@@ -39,4 +38,15 @@ rect {
 
 .spaceout {
     margin: 20px;
+}
+
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #6F257F;
+  padding: 14px;
+  text-align: center;
 }
