@@ -84,7 +84,7 @@ d3.csv("data/nutrients.csv", function(d, i, columns) {
             .attr("y", 420)
             .attr("fill", "#000")
             .attr("font-size", 7)
-            .text("Disclaimer: These values are approximated to the nearest value.");
+            .text("Disclaimer: These values are approximated to the nearest value. The values are accurate for a healthy young adult male.");
 
         // y-axis
         bars.append("g")

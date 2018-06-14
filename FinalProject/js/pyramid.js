@@ -124,7 +124,7 @@ d3.csv('data/food.csv', function(data) {
     .attr('transform', translation(w-w + 150, h-margin.bottom + 30));
     
   var dislcaimer = svg.append('text')
-    .text('Disclaimer: These serving sizes are approximated to the nearest whole number.')
+    .text('Disclaimer: These serving sizes are approximated to the nearest whole number. The values are accurate for a healthy young adult male')
     .attr('transform', translation(0, 399))
     .attr("font-size", 7);
 
