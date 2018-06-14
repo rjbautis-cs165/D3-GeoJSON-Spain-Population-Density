@@ -81,7 +81,10 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
                   .style("left", d3.event.pageX  + "px")
                   .style("top", d3.event.pageY  + "px")
                   .style("display", "inline-block")
-                  .html(d.food.replace(/^\w/, c => c.toUpperCase()) + "<br>" + d.type);
+                  .html("<b>" + d.name + "</b>" + "<br>" + 
+                        "Protein: " + d.protein + "<br>" + 
+                        "Carbs: " + d.carbohydrate + "<br>" +
+                        "Fat: " + d.fat);
             })
             .on("mouseout", function(d){ tooltip.style("display", "none");});
 
@@ -188,7 +191,10 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
                   .style("left", d3.event.pageX  + "px")
                   .style("top", d3.event.pageY  + "px")
                   .style("display", "inline-block")
-                  .html(d.food.replace(/^\w/, c => c.toUpperCase()) + "<br>" + d.type);
+                  .html("<b>" + d.name + "</b>" + "<br>" + 
+                        "Protein: " + d.protein + "<br>" + 
+                        "Carbs: " + d.carbohydrate + "<br>" +
+                        "Fat: " + d.fat);
             })
             .on("mouseout", function(d){ tooltip.style("display", "none");});
 
@@ -295,7 +301,10 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
                   .style("left", d3.event.pageX  + "px")
                   .style("top", d3.event.pageY  + "px")
                   .style("display", "inline-block")
-                  .html(d.food.replace(/^\w/, c => c.toUpperCase()) + "<br>" + d.type);
+                  .html("<b>" + d.name + "</b>" + "<br>" + 
+                        "Protein: " + d.protein + "<br>" + 
+                        "Carbs: " + d.carbohydrate + "<br>" +
+                        "Fat: " + d.fat);
             })
             .on("mouseout", function(d){ tooltip.style("display", "none");});
 
@@ -400,11 +409,16 @@ d3.xml("plate.svg").mimeType("image/svg+xml").get(function(error, xml) {
             // - https://bl.ocks.org/alandunning/274bf248fd0f362d64674920e85c1eb7
             // - https://joshtronic.com/2016/02/14/how-to-capitalize-the-first-letter-in-a-string-in-javascript/
             .on("mouseenter", function(d){
+                console.log(d);
+
                 tooltip
                   .style("left", d3.event.pageX  + "px")
                   .style("top", d3.event.pageY  + "px")
                   .style("display", "inline-block")
-                  .html(d.food.replace(/^\w/, c => c.toUpperCase()) + "<br>" + d.type);
+                  .html("<b>" + d.name + "</b>" + "<br>" + 
+                        "Protein: " + d.protein + "<br>" + 
+                        "Carbs: " + d.carbohydrate + "<br>" +
+                        "Fat: " + d.fat);
             })
             .on("mouseout", function(d){ tooltip.style("display", "none");});
 
